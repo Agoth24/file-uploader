@@ -10,14 +10,21 @@ export const folderRouter = Router();
 // PUT /folders/:folderId
 // DELETE /folders/:folderId
 
-folderRouter.get("/")
 
-folderRouter.get("/:folderId")
+// GET ALL FOLDERS
+// folderRouter.get("/")
 
-folderRouter.get("/:folderId/files")
+// GET ONE FOLDER
+// folderRouter.get("/:folderId")
 
-folderRouter.post("/")
+// GET ALL FILES IN A FOLDER
+// folderRouter.get("/:folderId/files")
 
-folderRouter.put("/:folderId")
+// UPLOAD A FOLDER
+// folderRouter.post("/")
 
-folderRouter.delete("/fodlerId")
+// UPDATE AN EXISTING FOLDER
+// folderRouter.put("/:folderId")
+
+// DELETE A FOLDER
+// folderRouter.delete("/fodlerId")

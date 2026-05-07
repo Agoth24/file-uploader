@@ -9,14 +9,20 @@ export const fileRouter = Router();
 // PUT /files/:fileId
 // DELETE /files/:fileId
 
-fileRouter.get("/")
+// GET ALL FILES
+// fileRouter.get("/")
 
-fileRouter.get("/:fileId")
+// GET ONE FILE
+// fileRouter.get("/:fileId")
 
-fileRouter.get("/:fileId/download")
+// DOWNLOAD A FILE
+// fileRouter.get("/:fileId/download")
 
-fileRouter.post("/")
+// UPLOAD A FILE
+// fileRouter.post("/")
 
-fileRouter.put("/:fileId")
+// UPDATE AN EXISTING FILE
+// fileRouter.put("/:fileId")
 
-fileRouter.delete("/:fileId")
+// DELETE A FILE
+// fileRouter.delete("/:fileId")

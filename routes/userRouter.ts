@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { auth } from "../lib/auth";
+import { requireAuth } from "../middleware/requireAuth";
 
 export const userRouter = Router();
 
@@ -8,8 +9,15 @@ export const userRouter = Router();
 // PUT /users/:userId
 
 
-userRouter.post("/", )
+userRouter.get("/", requireAuth, (req, res) => {
+    res.json({message: "Hello"})
+})
 
-userRouter.put("/:userId", )
+// CREATE A USER
+// userRouter.post("/", )
 
-userRouter.delete("/:userId", )
+// UPDATE A USER
+// userRouter.put("/:userId", )
+
+// DELETE A USER
+// userRouter.delete("/:userId", )
