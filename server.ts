@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 app.all("/api/auth/{*any}", toNodeHandler(auth));
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 app.use("/users", userRouter)
 app.use("/files", fileRouter)

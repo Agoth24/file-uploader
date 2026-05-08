@@ -1,6 +1,6 @@
+import type { Request, Response, NextFunction } from "express";
 import { fromNodeHeaders } from "better-auth/node";
 import { auth } from "../lib/auth";
-import type { Request, Response, NextFunction } from "express";
 
 export const requireAuth = async (
 	req: Request,
@@ -14,7 +14,7 @@ export const requireAuth = async (
 		return res.status(401).json({
 			data: null,
 			error: {
-				code: "",
+				code: 401,
 				message: "Not Authenticated",
 			},
 		});
