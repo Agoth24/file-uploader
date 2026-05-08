@@ -1,14 +1,14 @@
 ### USERS
 POST /users
 DELETE /users/:userId
-PUT /users/:userId
+PATCH /users/:userId
 
 ### FILES
 GET /files
 GET /files/:filerId
 GET /files/:filerId/download
 POST /files
-PUT /files/:fileId
+PATCH /files/:fileId
 DELETE /files/:fileId
 
 
@@ -17,5 +17,5 @@ GET /folders
 GET /folders/:folderId
 GET /folders/:folderId/files
 POST /folders
-PUT /folders/:folderId
+PATCH /folders/:folderId
 DELETE /folders/:folderId

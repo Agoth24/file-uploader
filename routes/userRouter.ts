@@ -6,7 +6,7 @@ export const userRouter = Router();
 
 // POST /users
 // DELETE /users/:userId
-// PUT /users/:userId
+// PATCH /users/:userId
 
 
 userRouter.get("/", requireAuth, (req, res) => {
@@ -17,7 +17,7 @@ userRouter.get("/", requireAuth, (req, res) => {
 // userRouter.post("/", )
 
 // UPDATE A USER
-// userRouter.put("/:userId", )
+// userRouter.patch("/:userId", )
 
 // DELETE A USER
 // userRouter.delete("/:userId", )

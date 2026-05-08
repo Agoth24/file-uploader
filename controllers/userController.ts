@@ -1,15 +1,11 @@
-const createUser = async () => {
+const updateUser = async (id, data) => {
 
 }
 
-const updateUser = async () => {
-
-}
-
-const deleteUser = async () => {
+const deleteUser = async (id) => {
 
 }
 
 export {
-    createUser, updateUser, deleteUser
+    updateUser, deleteUser
 }

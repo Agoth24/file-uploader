@@ -6,7 +6,7 @@ export const fileRouter = Router();
 // GET /files/:filerId
 // GET /files/:filerId/download
 // POST /files
-// PUT /files/:fileId
+// PATCH /files/:fileId
 // DELETE /files/:fileId
 
 // GET ALL FILES
@@ -22,7 +22,7 @@ export const fileRouter = Router();
 // fileRouter.post("/")
 
 // UPDATE AN EXISTING FILE
-// fileRouter.put("/:fileId")
+// fileRouter.patch("/:fileId")
 
 // DELETE A FILE
 // fileRouter.delete("/:fileId")

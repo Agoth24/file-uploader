@@ -7,7 +7,7 @@ export const folderRouter = Router();
 // GET /folders/:folderId
 // GET /folders/:folderId/files
 // POST /folders
-// PUT /folders/:folderId
+// PATCH /folders/:folderId
 // DELETE /folders/:folderId
 
 
@@ -24,7 +24,7 @@ export const folderRouter = Router();
 // folderRouter.post("/")
 
 // UPDATE AN EXISTING FOLDER
-// folderRouter.put("/:folderId")
+// folderRouter.patch("/:folderId")
 
 // DELETE A FOLDER
 // folderRouter.delete("/fodlerId")
