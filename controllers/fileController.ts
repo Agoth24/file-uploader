@@ -14,7 +14,7 @@ const uploadFile = async (file) => {
     
 }
 
-const updateFile = async (id, file) => {
+const updateFile = async (id, data) => {
 
 }
 
