@@ -1,9 +1,19 @@
-import type { Request } from "express";
+import { prisma } from "../lib/prisma";
+import type { User } from "../generated/prisma/client";
 
-const createUser = async () => {
+export const updateUser = async (id: string, data: Partial<User>) => {
+	return await prisma.user.update({
+		where: {
+			id,
+		},
+		data,
+	});
+};
 
-}
-
-const updateUser = async (user) => {
-
-}
+export const deleteUser = async (id: string) => {
+	return await prisma.user.delete({
+		where: {
+			id,
+		},
+	});
+};
