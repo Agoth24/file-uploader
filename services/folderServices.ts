@@ -5,7 +5,7 @@ export const getFolders = async () => {
     return await prisma.folder.findMany();
 }
 
-export const getFolder = async (id: number) => {
+export const getFolderById = async (id: number) => {
     return await prisma.folder.findUnique({where: {id}})
 }
 
@@ -13,7 +13,7 @@ export const createFolder = async (folder: Folder) => {
    return await prisma.folder.create({data: folder})
 }
 
-export const updateFolder = async (id: number, data: Partial<Folder>) => {
+export const updateFolderById = async (id: number, data: Partial<Folder>) => {
     return await prisma.folder.update({where: {id}, data})
 }
 
