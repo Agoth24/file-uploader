@@ -1,23 +1,12 @@
 import { Router } from "express";
-import { auth } from "../lib/auth";
-import { requireAuth } from "../middleware/requireAuth";
-
+import *  as controller from "../controllers/userController"
 export const userRouter = Router();
 
-// POST /users
-// DELETE /users/:userId
 // PATCH /users/:userId
-
-
-userRouter.get("/", requireAuth, (req, res) => {
-    res.json({message: "Hello"})
-})
-
-// CREATE A USER
-// userRouter.post("/", )
+// DELETE /users/:userId
 
 // UPDATE A USER
-// userRouter.patch("/:userId", )
+userRouter.patch("/:userId", controller.updateUser)
 
 // DELETE A USER
-// userRouter.delete("/:userId", )
+userRouter.delete("/:userId", controller.updateUser)

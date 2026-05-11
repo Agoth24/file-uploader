@@ -1,5 +1,10 @@
+### AUTH
+POST /api/auth/sign-up/email
+POST /api/auth/sign-in/email
+POST /api/auth/sign-out
+
+
 ### USERS
-POST /users
 DELETE /users/:userId
 PATCH /users/:userId
 

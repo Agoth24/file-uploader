@@ -1,27 +1,29 @@
+import { prisma } from "../lib/prisma";
 import type { File } from "../generated/prisma/client";
-import { Prisma } from "../generated/prisma/client";
 
+export const getFiles = async () => {
+	return await prisma.file.findMany();
+};
 
-const getFiles = async () => {
-        
-}
+export const getFileById = async (id: number) => {
+	return await prisma.file.findUnique({
+		where: { id },
+	});
+};
 
-const getFileById = async (id: string) => {
-    
-}
+export const uploadFile = async (file: File) => {
+	return await prisma.file.create({
+		data: file,
+	});
+};
 
-const downloadFileById = async (id: string) => {
-    
-}
+export const updateFileById = async (id: number, data: Partial<File>) => {
+	return await prisma.file.update({
+		where: { id },
+		data,
+	});
+};
 
-const uploadFile = async (file: File) => {
-    
-}
-
-const updateFileById = async (id: string, data: Partial<File>) => {
-
-}
-
-const deleteFileById = async (id: string) => {
-    
-}
+export const deleteFileById = async (id: number) => {
+	return await prisma.file.delete({ where: { id } });
+};
