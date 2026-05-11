@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from "express";
 import { AppError } from "../lib/AppError";
 
 export const errorHandler = async (
-	err,
+	err: Error,
 	req: Request,
 	res: Response,
 	next: NextFunction,
