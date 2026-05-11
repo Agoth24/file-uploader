@@ -15,9 +15,9 @@ export const downloadFile = async (
 	res: Response,
 ) => {
 	const { id } = req.params;
-	const file = await getFile(req, res);
+	const file = await FileService.getFileById(id);
 	// ADD DOWNLOAD FUNCTIONALITY
-    
+
 };
 
 export const uploadFile = async (req: Request, res: Response) => {
