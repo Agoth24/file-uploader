@@ -1,6 +1,6 @@
 import { Router } from "express";
 import * as controller from "../controllers/fileController";
-import { requireAuth } from "../middleware/requireAuth";
+import { authorizeUser } from "../middleware/authorizeUser";
 export const fileRouter = Router();
 
 // GET /files
@@ -14,16 +14,16 @@ export const fileRouter = Router();
 fileRouter.get("/", controller.getFiles);
 
 // GET ONE FILE
-fileRouter.get("/:id", controller.getFile);
+fileRouter.get("/:id", authorizeUser, controller.getFile);
 
 // DOWNLOAD A FILE
-fileRouter.get("/:id/download", controller.downloadFile);
+fileRouter.get("/:id/download", authorizeUser, controller.downloadFile);
 
 // UPLOAD A FILE
-fileRouter.post("/", requireAuth, controller.uploadFile);
+fileRouter.post("/", controller.uploadFile);
 
 // UPDATE AN EXISTING FILE
-fileRouter.patch("/:id", requireAuth, controller.updateFile);
+fileRouter.patch("/:id", authorizeUser, controller.updateFile);
 
 // DELETE A FILE
-fileRouter.delete("/:id", requireAuth, controller.deleteFile);
+fileRouter.delete("/:id", authorizeUser, controller.deleteFile);

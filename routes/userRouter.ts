@@ -1,13 +1,13 @@
 import { Router } from "express";
 import *  as controller from "../controllers/userController"
-import { requireAuth } from "../middleware/requireAuth";
+import { authorizeUser } from "../middleware/authorizeUser";
 export const userRouter = Router();
 
 // PATCH /users/:userId
 // DELETE /users/:userId
 
 // UPDATE A USER
-userRouter.patch("/:id", requireAuth, controller.updateUser)
+userRouter.patch("/:id", authorizeUser, controller.updateUser)
 
 // DELETE A USER
-userRouter.delete("/:id", requireAuth, controller.updateUser)
+userRouter.delete("/:id", authorizeUser, controller.updateUser)

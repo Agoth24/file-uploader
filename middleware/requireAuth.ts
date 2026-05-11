@@ -12,9 +12,8 @@ export const requireAuth = async (
 	});
 	if (!session) {
 		return res.status(401).json({
-			data: null,
 			error: {
-				code: 401,
+				statusCode: 401,
 				message: "Not Authenticated",
 			},
 		});

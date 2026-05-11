@@ -1,6 +1,7 @@
 import { Router } from "express";
 import * as controller from "../controllers/folderController";
 import { requireAuth } from "../middleware/requireAuth";
+import { authorizeUser } from "../middleware/authorizeUser";
 export const folderRouter = Router();
 
 // GET /folders
@@ -14,16 +15,16 @@ export const folderRouter = Router();
 folderRouter.get("/", controller.getFolders);
 
 // GET ONE FOLDER
-folderRouter.get("/:id", controller.getFolder);
+folderRouter.get("/:id", authorizeUser, controller.getFolder);
 
 // GET ALL FILES IN A FOLDER
-folderRouter.get("/:id/files", controller.getFilesInFolder);
+folderRouter.get("/:id/files", authorizeUser, controller.getFilesInFolder);
 
 // UPLOAD A FOLDER
-folderRouter.post("/", requireAuth, controller.createFolder);
+folderRouter.post("/", controller.createFolder);
 
 // UPDATE AN EXISTING FOLDER
-folderRouter.patch("/:id", requireAuth, controller.updateFolder);
+folderRouter.patch("/:id",  authorizeUser, controller.updateFolder);
 
 // DELETE A FOLDER
-folderRouter.delete("/fodlerId", requireAuth, controller.deleteFolder);
+folderRouter.delete("/folderId", authorizeUser, controller.deleteFolder);

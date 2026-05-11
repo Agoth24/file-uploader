@@ -6,6 +6,7 @@ import { fileRouter } from "./routes/fileRouter";
 import { folderRouter } from "./routes/folderRouter";
 import { userRouter } from "./routes/userRouter";
 import { errorHandler } from "./middleware/errorsHandler";
+import { requireAuth } from "./middleware/requireAuth";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,9 +15,9 @@ app.all("/api/auth/{*any}", toNodeHandler(auth));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.use("/users", userRouter)
-app.use("/files", fileRouter)
-app.use("/folders", folderRouter)
+app.use("/users", requireAuth, userRouter)
+app.use("/files", requireAuth, fileRouter)
+app.use("/folders", requireAuth, folderRouter)
 
 app.use(errorHandler);
 
