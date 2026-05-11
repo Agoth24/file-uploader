@@ -6,7 +6,7 @@ export const updateUser = async (id: string, data: Partial<User>) => {
 		where: {
 			id,
 		},
-		data,
+		data: { ...data, id },
 	});
 };
 

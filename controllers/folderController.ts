@@ -3,7 +3,8 @@ import type { Request, Response } from "express";
 import * as FolderService from "../services/folderServices";
 
 export const getFolders = async (req: Request, res: Response) => {
-	const folders = await FolderService.getFolders();
+    const userId = req.user!.id;
+	const folders = await FolderService.getFolders(userId);
 	return res.status(200).json(folders);
 };
 
@@ -11,8 +12,9 @@ export const getFolder = async (
 	req: Request<{ id: string }>,
 	res: Response,
 ) => {
-	const id = parseInt(req.params.id);
-	const folders = await FolderService.getFolderById(id);
+    const userId = req.user!.id;    
+	const folderId = parseInt(req.params.id);
+	const folders = await FolderService.getFolderById(userId, folderId);
 	return res.status(200).json(folders);
 };
 
@@ -29,14 +31,16 @@ export const getFilesInFolder = async (
 	req: Request<{ id: string }>,
 	res: Response,
 ) => {
-	const id = parseInt(req.params.id);
-	const files = await FolderService.getFilesInFolderById(id);
+    const userId = req.user!.id;
+	const folderId = parseInt(req.params.id);
+	const files = await FolderService.getFilesInFolderById(userId, folderId);
 	return res.status(200).json(files);
 };
 
 export const createFolder = async (req: Request, res: Response) => {
+    const userId = req.user!.id;
 	const data: Folder = req.body;
-	const folder = await FolderService.createFolder(data);
+	const folder = await FolderService.createFolder(userId, data);
 	return res.status(201).json(folder);
 };
 
@@ -44,17 +48,21 @@ export const updateFolder = async (
 	req: Request<{ id: string }>,
 	res: Response,
 ) => {
-	const id = parseInt(req.params.id);
+    const userId = req.user!.id;
+	const folderId = parseInt(req.params.id);
 	const data: Partial<Folder> = req.body;
-	const folder = await FolderService.updateFolderById(id, data);
-	return res.status(200).json(folder);
+	const foldersUpdated = await FolderService.updateFolderById(userId, folderId, data);
+	return res.status(200).json({
+        foldersUpdated: foldersUpdated
+    });
 };
 
 export const deleteFolder = async (
 	req: Request<{ id: string }>,
 	res: Response,
 ) => {
-	const id = parseInt(req.params.id);
-	await FolderService.deleteFolder(id);
-	return res.status(204);
+    const userId = req.user!.id;
+	const folderId = parseInt(req.params.id);
+	await FolderService.deleteFolder(userId, folderId);
+	return res.status(204).send();
 };

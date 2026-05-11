@@ -3,20 +3,20 @@ import type { Request, Response } from "express";
 import * as UserService from "../services/userServices";
 
 export const updateUser = async (
-	req: Request<{ id: string }>,
+	req: Request,
 	res: Response,
 ) => {
-	const { id } = req.params;
+	const userId = req.user!.id;
 	const data: Partial<User> = req.body;
-	const user = await UserService.updateUser(id, data);
+	const user = await UserService.updateUser(userId, data);
 	return res.status(200).json(user);
 };
 
 export const deleteUser = async (
-	req: Request<{ id: string }>,
+	req: Request,
 	res: Response,
 ) => {
-	const { id } = req.params;
-	await UserService.deleteUser(id);
+	const userId = req.user!.id;
+	await UserService.deleteUser(userId);
 	return res.status(204).send();
 };

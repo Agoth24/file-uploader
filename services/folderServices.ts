@@ -1,29 +1,39 @@
 import { prisma } from "../lib/prisma";
 import type { Folder } from "../generated/prisma/client";
 
-export const getFolders = async () => {
-	return await prisma.folder.findMany();
+export const getFolders = async (userId: string) => {
+	return await prisma.folder.findMany({ where: { userId } });
 };
 
-export const getFolderById = async (id: number) => {
-	return await prisma.folder.findUnique({ where: { id } });
+export const getFolderById = async (userId: string, folderId: number) => {
+	return await prisma.folder.findFirst({ where: { id: folderId, userId } });
 };
 
-export const getFilesInFolderById = async (id: number) => {
-	return await prisma.folder.findUnique({
-		where: { id },
+export const getFilesInFolderById = async (
+	userId: string,
+	folderId: number,
+) => {
+	return await prisma.folder.findFirst({
+		where: { id: folderId, userId },
 		select: { files: true },
 	});
 };
 
-export const createFolder = async (folder: Folder) => {
-	return await prisma.folder.create({ data: folder });
+export const createFolder = async (userId: string, folderData: Folder) => {
+	return await prisma.folder.create({ data: { ...folderData, userId } });
 };
 
-export const updateFolderById = async (id: number, data: Partial<Folder>) => {
-	return await prisma.folder.update({ where: { id }, data });
+export const updateFolderById = async (
+	userId: string,
+	folderId: number,
+	folderData: Partial<Folder>,
+) => {
+	return await prisma.folder.updateMany({
+		where: { id: folderId, userId },
+		data: { ...folderData, userId },
+	});
 };
 
-export const deleteFolder = async (id: number) => {
-	return await prisma.folder.delete({ where: { id } });
+export const deleteFolder = async (userId: string, folderId: number) => {
+	return await prisma.folder.deleteMany({ where: { id: folderId, userId } });
 };

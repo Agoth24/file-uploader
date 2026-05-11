@@ -17,7 +17,7 @@ export const getFileById = async (userId: string, fileId: number) => {
 
 export const uploadFile = async (userId: string, fileData: File) => {
 	return await prisma.file.create({
-		data: fileData,
+		data: {...fileData, userId},
 	});
 };
 
@@ -28,7 +28,7 @@ export const updateFileById = async (
 ) => {
 	return await prisma.file.updateMany({
 		where: { id: fileId, userId },
-		data: fileData,
+		data: {...fileData, userId},
 	});
 };
 
