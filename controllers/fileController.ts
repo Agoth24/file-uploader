@@ -4,18 +4,18 @@ import * as FileService from "../services/fileServices";
 
 export const getFiles = async (req: Request, res: Response) => {};
 
-export const getFile = async (req: Request<{ id: number }>, res: Response) => {
-	const { id } = req.params;
-	const file = await FileService.getFileById(id);
+export const getFile = async (req: Request<{ fileId: number }>, res: Response) => {
+	const { fileId } = req.params;
+	const file = await FileService.getFileById(fileId);
 	return res.status(200).json(file);
 };
 
 export const downloadFile = async (
-	req: Request<{ id: number }>,
+	req: Request<{ fileId: number }>,
 	res: Response,
 ) => {
-	const { id } = req.params;
-	const file = await FileService.getFileById(id);
+	const { fileId } = req.params;
+	const file = await FileService.getFileById(fileId);
 	// ADD DOWNLOAD FUNCTIONALITY
 
 };
@@ -27,20 +27,20 @@ export const uploadFile = async (req: Request, res: Response) => {
 };
 
 export const updateFile = async (
-	req: Request<{ id: number }>,
+	req: Request<{ fileId: number }>,
 	res: Response,
 ) => {
-	const { id } = req.params;
+	const { fileId } = req.params;
     const data: Partial<File> = req.body;
-    const file = await FileService.updateFileById(id, data)
+    const file = await FileService.updateFileById(fileId, data)
     return res.status(200).json(file)
 };
 
 export const deleteFile = async (
-	req: Request<{ id: number }>,
+	req: Request<{ fileId: number }>,
 	res: Response,
 ) => {
-    const {id} = req.params;
-    await FileService.deleteFileById(id)
+    const {fileId} = req.params;
+    await FileService.deleteFileById(fileId)
     return res.status(204)
 };

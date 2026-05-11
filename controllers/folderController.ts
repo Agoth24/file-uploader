@@ -8,22 +8,32 @@ export const getFolders = async (req: Request, res: Response) => {
 };
 
 export const getFolder = async (
-	req: Request<{ id: number }>,
+	req: Request<{ folderId: number }>,
 	res: Response,
 ) => {
-	const { id } = req.params;
-	const folders = await FolderService.getFolderById(id);
+	const { folderId } = req.params;
+	const folders = await FolderService.getFolderById(folderId);
 	return res.status(200).json(folders);
 };
 
-export const downloadFolder = async (
-	req: Request<{ id: number }>,
+// export const downloadFolder = async (
+// 	req: Request<{ folderId: number }>,
+// 	res: Response,
+// ) => {
+// 	const { folderId } = req.params;
+// 	const folder = await FolderService.getFolderById(folderId);
+// 	// IMPLEMENT DOWNLOAD FEATURE
+// };
+
+export const getFilesInFolder = async (
+	req: Request<{ folderId: number }>,
 	res: Response,
 ) => {
-	const { id } = req.params;
-	const folder = await FolderService.getFolderById(id);
-	// IMPLEMENT DOWNLOAD FEATURE
-};
+    const {folderId} = req.params;
+    const files = await FolderService.getFilesInFolderById(folderId);
+    return res.status(200).json(files);
+    
+}
 
 export const createFolder = async (req: Request, res: Response) => {
 	const data: Folder = req.body;
@@ -32,17 +42,17 @@ export const createFolder = async (req: Request, res: Response) => {
 };
 
 export const updateFolder = async (
-	req: Request<{ id: number }>,
+	req: Request<{ folderId: number }>,
 	res: Response,
 ) => {
-	const { id } = req.params;
+	const { folderId } = req.params;
 	const data: Partial<Folder> = req.body;
-	const folder = await FolderService.updateFolderById(id, data);
+	const folder = await FolderService.updateFolderById(folderId, data);
 	return res.status(200).json(folder);
 };
 
-const deleteFolder = async (req: Request<{ id: number }>, res: Response) => {
-	const { id } = req.params;
-	await FolderService.deleteFolder(id);
+export const deleteFolder = async (req: Request<{ folderId: number }>, res: Response) => {
+	const { folderId } = req.params;
+	await FolderService.deleteFolder(folderId);
 	return res.status(204);
 };

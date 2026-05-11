@@ -1,5 +1,5 @@
 import { Router } from "express";
-
+import * as controller from "../controllers/fileController";
 export const fileRouter = Router();
 
 // GET /files
@@ -10,19 +10,19 @@ export const fileRouter = Router();
 // DELETE /files/:fileId
 
 // GET ALL FILES
-// fileRouter.get("/")
+fileRouter.get("/", controller.getFiles);
 
 // GET ONE FILE
-// fileRouter.get("/:fileId")
+fileRouter.get("/:fileId", controller.getFile);
 
 // DOWNLOAD A FILE
-// fileRouter.get("/:fileId/download")
+fileRouter.get("/:fileId/download", controller.downloadFile);
 
 // UPLOAD A FILE
-// fileRouter.post("/")
+fileRouter.post("/", controller.uploadFile);
 
 // UPDATE AN EXISTING FILE
-// fileRouter.patch("/:fileId")
+fileRouter.patch("/:fileId", controller.updateFile);
 
 // DELETE A FILE
-// fileRouter.delete("/:fileId")
+fileRouter.delete("/:fileId", controller.deleteFile);
