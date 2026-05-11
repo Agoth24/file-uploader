@@ -7,23 +7,23 @@ export const fileRouter = Router();
 // GET /files/:filerId
 // GET /files/:filerId/download
 // POST /files
-// PATCH /files/:fileId
-// DELETE /files/:fileId
+// PATCH /files/:id
+// DELETE /files/:id
 
 // GET ALL FILES
 fileRouter.get("/", controller.getFiles);
 
 // GET ONE FILE
-fileRouter.get("/:fileId", controller.getFile);
+fileRouter.get("/:id", controller.getFile);
 
 // DOWNLOAD A FILE
-fileRouter.get("/:fileId/download", controller.downloadFile);
+fileRouter.get("/:id/download", controller.downloadFile);
 
 // UPLOAD A FILE
 fileRouter.post("/", requireAuth, controller.uploadFile);
 
 // UPDATE AN EXISTING FILE
-fileRouter.patch("/:fileId", requireAuth, controller.updateFile);
+fileRouter.patch("/:id", requireAuth, controller.updateFile);
 
 // DELETE A FILE
-fileRouter.delete("/:fileId", requireAuth, controller.deleteFile);
+fileRouter.delete("/:id", requireAuth, controller.deleteFile);

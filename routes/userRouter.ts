@@ -7,7 +7,7 @@ export const userRouter = Router();
 // DELETE /users/:userId
 
 // UPDATE A USER
-userRouter.patch("/:userId", requireAuth, controller.updateUser)
+userRouter.patch("/:id", requireAuth, controller.updateUser)
 
 // DELETE A USER
-userRouter.delete("/:userId", requireAuth, controller.updateUser)
+userRouter.delete("/:id", requireAuth, controller.updateUser)

@@ -5,6 +5,7 @@ import { auth } from "./lib/auth";
 import { fileRouter } from "./routes/fileRouter";
 import { folderRouter } from "./routes/folderRouter";
 import { userRouter } from "./routes/userRouter";
+import { errorHandler } from "./middleware/errorsHandler";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.use("/users", userRouter)
 app.use("/files", fileRouter)
 app.use("/folders", folderRouter)
 
+app.use(errorHandler);
 
 app.listen(PORT, () => {
 	console.log(`Listening on port ${PORT}`);
