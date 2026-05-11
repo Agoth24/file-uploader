@@ -1,3 +1,4 @@
+import type { User } from "../generated/prisma/client";
 import type { Request, Response } from "express";
 import * as UserService from "../services/userServices";
 
@@ -6,7 +7,7 @@ export const updateUser = async (
 	res: Response,
 ) => {
 	const { id } = req.params;
-	const data = req.body;
+	const data: Partial<User> = req.body;
 	const user = await UserService.updateUser(id, data);
 	return res.status(200).json(user);
 };
