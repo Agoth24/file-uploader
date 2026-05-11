@@ -8,16 +8,16 @@ export const getFolders = async (req: Request, res: Response) => {
 };
 
 export const getFolder = async (
-	req: Request<{ folderId: number }>,
+	req: Request<{ folderId: string }>,
 	res: Response,
 ) => {
-	const { folderId } = req.params;
+	const folderId = parseInt(req.params.folderId);
 	const folders = await FolderService.getFolderById(folderId);
 	return res.status(200).json(folders);
 };
 
 // export const downloadFolder = async (
-// 	req: Request<{ folderId: number }>,
+// 	req: Request<{ folderId: string }>,
 // 	res: Response,
 // ) => {
 // 	const { folderId } = req.params;
@@ -26,14 +26,13 @@ export const getFolder = async (
 // };
 
 export const getFilesInFolder = async (
-	req: Request<{ folderId: number }>,
+	req: Request<{ folderId: string }>,
 	res: Response,
 ) => {
-    const {folderId} = req.params;
-    const files = await FolderService.getFilesInFolderById(folderId);
-    return res.status(200).json(files);
-    
-}
+	const folderId = parseInt(req.params.folderId);
+	const files = await FolderService.getFilesInFolderById(folderId);
+	return res.status(200).json(files);
+};
 
 export const createFolder = async (req: Request, res: Response) => {
 	const data: Folder = req.body;
@@ -42,17 +41,20 @@ export const createFolder = async (req: Request, res: Response) => {
 };
 
 export const updateFolder = async (
-	req: Request<{ folderId: number }>,
+	req: Request<{ folderId: string }>,
 	res: Response,
 ) => {
-	const { folderId } = req.params;
+	const folderId = parseInt(req.params.folderId);
 	const data: Partial<Folder> = req.body;
 	const folder = await FolderService.updateFolderById(folderId, data);
 	return res.status(200).json(folder);
 };
 
-export const deleteFolder = async (req: Request<{ folderId: number }>, res: Response) => {
-	const { folderId } = req.params;
+export const deleteFolder = async (
+	req: Request<{ folderId: string }>,
+	res: Response,
+) => {
+	const folderId = parseInt(req.params.folderId);
 	await FolderService.deleteFolder(folderId);
 	return res.status(204);
 };

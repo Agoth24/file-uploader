@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as controller from "../controllers/fileController";
+import { requireAuth } from "../middleware/requireAuth";
 export const fileRouter = Router();
 
 // GET /files
@@ -19,10 +20,10 @@ fileRouter.get("/:fileId", controller.getFile);
 fileRouter.get("/:fileId/download", controller.downloadFile);
 
 // UPLOAD A FILE
-fileRouter.post("/", controller.uploadFile);
+fileRouter.post("/", requireAuth, controller.uploadFile);
 
 // UPDATE AN EXISTING FILE
-fileRouter.patch("/:fileId", controller.updateFile);
+fileRouter.patch("/:fileId", requireAuth, controller.updateFile);
 
 // DELETE A FILE
-fileRouter.delete("/:fileId", controller.deleteFile);
+fileRouter.delete("/:fileId", requireAuth, controller.deleteFile);
