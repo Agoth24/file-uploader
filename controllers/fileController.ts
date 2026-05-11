@@ -8,8 +8,9 @@ export const getFile = async (
 	req: Request<{ id: string }>,
 	res: Response,
 ) => {
-	const id = parseInt(req.params.id);
-	const file = await FileService.getFileById(id);
+    const userId = req.user!.id;
+	const fileId = parseInt(req.params.id);
+	const file = await FileService.getFileById(userId, fileId);
 	return res.status(200).json(file);
 };
 
@@ -17,14 +18,16 @@ export const downloadFile = async (
 	req: Request<{ id: string }>,
 	res: Response,
 ) => {
-	const id = parseInt(req.params.id);
-	const file = await FileService.getFileById(id);
+    const userId = req.user!.id;
+	const fileId = parseInt(req.params.id);
+	const file = await FileService.getFileById(userId, fileId);
 	// ADD DOWNLOAD FUNCTIONALITY
 };
 
 export const uploadFile = async (req: Request, res: Response) => {
+    const userId = req.user!.id;
 	const data: File = req.body;
-	const file = await FileService.uploadFile(data);
+	const file = await FileService.uploadFile(userId, data);
 	return res.status(201).json(file);
 };
 
@@ -32,9 +35,10 @@ export const updateFile = async (
 	req: Request<{ id: string }>,
 	res: Response,
 ) => {
-	const id = parseInt(req.params.id);
+    const userId = req.user!.id;
+	const fileId = parseInt(req.params.id);
 	const data: Partial<File> = req.body;
-	const file = await FileService.updateFileById(id, data);
+	const file = await FileService.updateFileById(userId, fileId, data);
 	return res.status(200).json(file);
 };
 
@@ -42,7 +46,8 @@ export const deleteFile = async (
 	req: Request<{ id: string }>,
 	res: Response,
 ) => {
-	const id = parseInt(req.params.id);
-	await FileService.deleteFileById(id);
+    const userId = req.user!.id;
+	const fileId = parseInt(req.params.id);
+	await FileService.deleteFileById(userId, fileId);
 	return res.status(204);
 };
