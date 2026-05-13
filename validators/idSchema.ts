@@ -4,5 +4,5 @@ export const idParamSchema = z.object({
 	id: z.coerce
 		.number()
 		.int()
-		.nonnegative({ message: "id cannot be negative" }),
+		.positive({ message: "id must be positive" }),
 });
