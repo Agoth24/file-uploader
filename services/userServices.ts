@@ -1,19 +1,26 @@
 import { prisma } from "../lib/prisma";
 import type { User } from "../generated/prisma/client";
+import { ApiError } from "../lib/ApiError";
 
 export const updateUser = async (id: string, data: Partial<User>) => {
-	return await prisma.user.update({
+	const user = await prisma.user.update({
 		where: {
 			id,
 		},
 		data: { ...data, id },
 	});
+
+	if (!user) throw new ApiError(404, "User not found");
+	return user;
 };
 
 export const deleteUser = async (id: string) => {
-	return await prisma.user.delete({
+	const user = await prisma.user.delete({
 		where: {
 			id,
 		},
 	});
+
+	if (!user) throw new ApiError(404, "User not found");
+	return user;
 };

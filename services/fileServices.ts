@@ -19,7 +19,7 @@ export const getFileById = async (userId: string, fileId: number) => {
 		where: { id: fileId, userId },
 	});
 
-	if (!file) throw new ApiError(404, "File Not Found");
+	if (!file) throw new ApiError(404, "File not found");
 	return file;
 };
 
@@ -39,7 +39,7 @@ export const updateFileById = async (
 		data: { ...fileData, userId },
 	});
 
-	if (numUpdated.count === 0) throw new ApiError(404, "File Not found");
+	if (numUpdated.count === 0) throw new ApiError(404, "File not found");
 	return numUpdated;
 };
 
