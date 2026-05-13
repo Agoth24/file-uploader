@@ -1,8 +1,8 @@
 import { prisma } from "../lib/prisma";
-import type { UserServiceDTO } from "../interfaces/user.interface";
+import type { UserUpdateDTO } from "../interfaces/user.interface";
 import { ApiError } from "../lib/ApiError";
 
-export const updateUser = async (id: string, data: Partial<UserServiceDTO>) => {
+export const updateUser = async (id: string, data: UserUpdateDTO) => {
 	const user = await prisma.user.update({
 		where: {
 			id,

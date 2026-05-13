@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import * as FileService from "../services/fileServices";
-import type { FileUploadBodyDTO } from "../interfaces/file.interface";
+import type { FileUpdateBodyDTO, FileUploadBodyDTO } from "../interfaces/file.interface";
 
 export const getFiles = async (req: Request, res: Response) => {
 	const userId = req.user!.id;
@@ -27,8 +27,9 @@ export const downloadFile = async (
 
 export const uploadFile = async (req: Request, res: Response) => {
 	const userId = req.user!.id;
-	const data: FileUploadBodyDTO = req.body;
-	const file = await FileService.uploadFile(userId, data);
+	const userFileData: FileUploadBodyDTO = req.body;
+    // add multer stuff here
+	const file = await FileService.uploadFile(userId, userFileData);
 	return res.status(201).json(file);
 };
 
@@ -38,8 +39,8 @@ export const updateFile = async (
 ) => {
 	const userId = req.user!.id;
 	const fileId = parseInt(req.params.id);
-	const data: Partial<File> = req.body;
-	const filesUpdated = await FileService.updateFileById(userId, fileId, data);
+	const userFileData: Partial<FileUpdateBodyDTO> = req.body;
+	const filesUpdated = await FileService.updateFileById(userId, fileId, userFileData);
 	return res.status(200).json({
         filesUpdated: filesUpdated
     });

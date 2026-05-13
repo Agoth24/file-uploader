@@ -8,5 +8,4 @@ export type FileServiceDTO = FileUploadBodyDTO & {
     size: number,
     mimetype: string,
     url: string,
-    userId: string,
 }

@@ -1,5 +1,5 @@
-import { prisma } from "../lib/prisma";
 import type { FolderCreateDTO } from "../interfaces/folder.interface";
+import { prisma } from "../lib/prisma";
 import { ApiError } from "../lib/ApiError";
 
 export const getFolders = async (userId: string) => {

@@ -1,4 +1,4 @@
-import type { Folder } from "../generated/prisma/client";
+import type { FolderCreateDTO, FolderUpdateDTO } from "../interfaces/folder.interface";
 import type { Request, Response } from "express";
 import * as FolderService from "../services/folderServices";
 
@@ -40,8 +40,8 @@ export const getFilesInFolder = async (
 export const createFolder = async (req: Request, res: Response) => {
     const userId = req.user!.id;
     // PROBLEM --> USE DTO
-	const data: Folder = req.body;
-	const folder = await FolderService.createFolder(userId, data);
+	const userFolderData: FolderCreateDTO = req.body;
+	const folder = await FolderService.createFolder(userId, userFolderData);
 	return res.status(201).json(folder);
 };
 
@@ -51,8 +51,8 @@ export const updateFolder = async (
 ) => {
     const userId = req.user!.id;
 	const folderId = parseInt(req.params.id);
-	const data: Partial<Folder> = req.body;
-	const foldersUpdated = await FolderService.updateFolderById(userId, folderId, data);
+	const userFolderData: FolderUpdateDTO = req.body;
+	const foldersUpdated = await FolderService.updateFolderById(userId, folderId, userFolderData);
 	return res.status(200).json({
         foldersUpdated: foldersUpdated
     });

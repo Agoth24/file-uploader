@@ -7,8 +7,8 @@ export const updateUser = async (
 	res: Response,
 ) => {
 	const userId = req.user!.id;
-	const data: UserUpdateDTO = req.body;
-	const user = await UserService.updateUser(userId, data);
+	const userData: UserUpdateDTO = req.body;
+	const user = await UserService.updateUser(userId, userData);
 	return res.status(200).json(user);
 };
 
