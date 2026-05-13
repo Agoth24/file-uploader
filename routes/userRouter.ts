@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as controller from "../controllers/userController";
 import { validate } from "../validators/validate";
-import { updateUserSchema } from "../validators/userSchemas";
+import { userUpdateSchema } from "../validators/userSchemas";
 export const userRouter = Router();
 
 // PATCH /users/:userId
@@ -10,7 +10,7 @@ export const userRouter = Router();
 // UPDATE A USER
 userRouter.patch(
 	"/me",
-	validate("body", updateUserSchema),
+	validate("body", userUpdateSchema),
 	controller.updateUser,
 );
 

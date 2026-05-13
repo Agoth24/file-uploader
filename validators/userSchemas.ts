@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const updateUserSchema = z.object({
+export const userUpdateSchema = z.object({
 	name: z
 		.string()
 		.trim()

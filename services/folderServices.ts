@@ -1,5 +1,5 @@
 import { prisma } from "../lib/prisma";
-import type { Folder } from "../generated/prisma/client";
+import type { FolderCreateDTO } from "../interfaces/folder.interface";
 import { ApiError } from "../lib/ApiError";
 
 export const getFolders = async (userId: string) => {
@@ -24,14 +24,14 @@ export const getFilesInFolderById = async (
 	});
 };
 
-export const createFolder = async (userId: string, folderData: Folder) => {
+export const createFolder = async (userId: string, folderData: FolderCreateDTO) => {
 	return await prisma.folder.create({ data: { ...folderData, userId } });
 };
 
 export const updateFolderById = async (
 	userId: string,
 	folderId: number,
-	folderData: Partial<Folder>,
+	folderData: Partial<FolderCreateDTO>,
 ) => {
 	const numUpdated = await prisma.folder.updateMany({
 		where: { id: folderId, userId },

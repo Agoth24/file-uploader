@@ -1,5 +1,5 @@
+import type { FileServiceDTO } from "../interfaces/file.interface";
 import { prisma } from "../lib/prisma";
-import type { File } from "../generated/prisma/client";
 import { ApiError } from "../lib/ApiError";
 
 /*
@@ -23,7 +23,7 @@ export const getFileById = async (userId: string, fileId: number) => {
 	return file;
 };
 
-export const uploadFile = async (userId: string, fileData: File) => {
+export const uploadFile = async (userId: string, fileData: FileServiceDTO) => {
 	return await prisma.file.create({
 		data: { ...fileData, userId },
 	});
@@ -32,7 +32,7 @@ export const uploadFile = async (userId: string, fileData: File) => {
 export const updateFileById = async (
 	userId: string,
 	fileId: number,
-	fileData: Partial<File>,
+	fileData: Partial<FileServiceDTO>,
 ) => {
 	const numUpdated = await prisma.file.updateMany({
 		where: { id: fileId, userId },

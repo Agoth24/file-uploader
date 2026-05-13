@@ -1,6 +1,6 @@
-import type { File } from "../generated/prisma/client";
 import type { Request, Response } from "express";
 import * as FileService from "../services/fileServices";
+import type { FileUploadBodyDTO } from "../interfaces/file.interface";
 
 export const getFiles = async (req: Request, res: Response) => {
 	const userId = req.user!.id;
@@ -27,7 +27,7 @@ export const downloadFile = async (
 
 export const uploadFile = async (req: Request, res: Response) => {
 	const userId = req.user!.id;
-	const data: File = req.body;
+	const data: FileUploadBodyDTO = req.body;
 	const file = await FileService.uploadFile(userId, data);
 	return res.status(201).json(file);
 };
