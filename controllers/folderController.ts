@@ -9,17 +9,17 @@ export const getFolders = async (req: Request, res: Response) => {
 };
 
 export const getFolder = async (
-	req: Request<{ id: string }>,
+	req: Request<{ id: number }>,
 	res: Response,
 ) => {
     const userId = req.user!.id;    
-	const folderId = parseInt(req.params.id);
+	const folderId = req.params.id;
 	const folders = await FolderService.getFolderById(userId, folderId);
 	return res.status(200).json(folders);
 };
 
 // export const downloadFolder = async (
-// 	req: Request<{ id: string }>,
+// 	req: Request<{ id: number }>,
 // 	res: Response,
 // ) => {
 // 	const { id } = req.params;
@@ -28,11 +28,11 @@ export const getFolder = async (
 // };
 
 export const getFilesInFolder = async (
-	req: Request<{ id: string }>,
+	req: Request<{ id: number }>,
 	res: Response,
 ) => {
     const userId = req.user!.id;
-	const folderId = parseInt(req.params.id);
+	const folderId = req.params.id;
 	const files = await FolderService.getFilesInFolderById(userId, folderId);
 	return res.status(200).json(files);
 };
@@ -46,11 +46,11 @@ export const createFolder = async (req: Request, res: Response) => {
 };
 
 export const updateFolder = async (
-	req: Request<{ id: string }>,
+	req: Request<{ id: number }>,
 	res: Response,
 ) => {
     const userId = req.user!.id;
-	const folderId = parseInt(req.params.id);
+	const folderId = req.params.id;
 	const data: Partial<Folder> = req.body;
 	const foldersUpdated = await FolderService.updateFolderById(userId, folderId, data);
 	return res.status(200).json({
@@ -59,11 +59,11 @@ export const updateFolder = async (
 };
 
 export const deleteFolder = async (
-	req: Request<{ id: string }>,
+	req: Request<{ id: number }>,
 	res: Response,
 ) => {
     const userId = req.user!.id;
-	const folderId = parseInt(req.params.id);
+	const folderId = req.params.id;
 	await FolderService.deleteFolder(userId, folderId);
 	return res.status(204).send();
 };

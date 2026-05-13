@@ -38,13 +38,15 @@ export const updateFolderById = async (
 		data: { ...folderData, userId },
 	});
 
-    if (numUpdated.count === 0) throw new ApiError(404, "Folder not found");
+	if (numUpdated.count === 0) throw new ApiError(404, "Folder not found");
 	return numUpdated;
 };
 
 export const deleteFolder = async (userId: string, folderId: number) => {
-	const numDeleted = await prisma.folder.deleteMany({ where: { id: folderId, userId } });
+	const numDeleted = await prisma.folder.deleteMany({
+		where: { id: folderId, userId },
+	});
 
-    if (numDeleted.count === 0) throw new ApiError(404, "Folder not found");
+	if (numDeleted.count === 0) throw new ApiError(404, "Folder not found");
 	return numDeleted;
 };
