@@ -1,4 +1,4 @@
-export class AppError extends Error {
+export class ApiError extends Error {
     public statusCode;
     public message;
     
