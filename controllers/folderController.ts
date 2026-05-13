@@ -39,6 +39,7 @@ export const getFilesInFolder = async (
 
 export const createFolder = async (req: Request, res: Response) => {
     const userId = req.user!.id;
+    // PROBLEM --> USE DTO
 	const data: Folder = req.body;
 	const folder = await FolderService.createFolder(userId, data);
 	return res.status(201).json(folder);

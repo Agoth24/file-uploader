@@ -4,10 +4,10 @@ import type { RequestHandler, Request, Response, NextFunction } from "express";
 
 type RequestField = "body" | "params";
 
-export const validateBody =
+export const validate =
 	<T>(field: RequestField, schema: ZodType<T>): RequestHandler =>
 	(req: Request, res: Response, next: NextFunction): void => {
-		const result = schema.safeParse(req.body);
+		const result = schema.safeParse(req[field]);
 
 		if (!result.success) {
 			res.status(400).json({
