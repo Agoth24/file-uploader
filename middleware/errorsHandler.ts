@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import { AppError } from "../lib/ApiError";
+import { ApiError } from "../lib/ApiError";
 
 export const errorHandler = async (
 	err: Error,
@@ -7,7 +7,7 @@ export const errorHandler = async (
 	res: Response,
 	next: NextFunction,
 ) => {
-	if (err instanceof AppError) {
+	if (err instanceof ApiError) {
 		return res.status(err.statusCode).json({
 			error: {
 				statusCode: err.statusCode,
